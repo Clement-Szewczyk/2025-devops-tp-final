@@ -1,7 +1,6 @@
 name: CI - Complete Test Suite
 
 on:
-  workflow_call:
   push:
     branches: [main, develop]
   pull_request:

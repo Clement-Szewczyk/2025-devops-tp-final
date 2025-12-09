@@ -1,6 +1,7 @@
 name: CI - Docker
 
 on:
+  workflow_call:
   push:
     branches: [main, develop]
     paths:
