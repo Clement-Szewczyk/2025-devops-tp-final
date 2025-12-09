@@ -1,6 +1,7 @@
 name: CI - Frontend Tests
 
 on:
+  workflow_call:
   push:
     branches: [main, develop]
     paths:

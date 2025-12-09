@@ -1,0 +1,22 @@
+name: CI - Complete Test Suite
+
+on:
+  workflow_call:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:  # Permet de lancer manuellement
+
+jobs:
+  backend:
+    name: Run Backend CI
+    uses: ./.github/workflows/ci-backend.yaml
+
+  frontend:
+    name: Run Frontend CI
+    uses: ./.github/workflows/ci-frontend.yaml
+
+  docker:
+    needs: [backend, frontend]
+    uses: ./.github/workflows/ci-docker.yaml
