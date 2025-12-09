@@ -17,8 +17,8 @@ on:
       - '.github/workflows/ci-docker.yaml'
 
 jobs:
-  docker-build-test:
-    name: Docker Build Test
+  docker-build:
+    name: Docker push
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Backend image
-        uses: docker/buld-push-action@v5
+        uses: docker/build-push-action@v5
         with:
           context: ./backend
           file: ./backend/Dockerfile
