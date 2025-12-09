@@ -7,14 +7,14 @@ on:
       - 'backend/Dockerfile'
       - 'frontend/Dockerfile'
       - 'docker-compose.yml'
-      - '.github/workflows/ci-docker.yml'
+      - '.github/workflows/ci-docker.yaml'
   pull_request:
     branches: [main, develop]
     paths:
       - 'backend/Dockerfile'
       - 'frontend/Dockerfile'
       - 'docker-compose.yml'
-      - '.github/workflows/ci-docker.yml'
+      - '.github/workflows/ci-docker.yaml'
 
 jobs:
   docker-build-test:
