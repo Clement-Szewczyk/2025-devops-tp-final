@@ -17,8 +17,7 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
 # Valeur par défaut pour le développement local
-ENV BACKEND_URL=http://localhost:3000
-
+ENV BACKEND_URL=${{secrets.BACKEND_URL}}
 EXPOSE 5173
 
 CMD ["nginx", "-g", "daemon off;"]
