@@ -2,20 +2,10 @@ name: CI - Backend Tests
 
 on:
   workflow_call:
-  push:
-    branches: [main, develop]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/ci-backend.yaml'
-  pull_request:
-    branches: [main, develop]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/ci-backend.yaml'
 
 jobs:
   backend-tests:
-    name: Backend Tests & Linting
+    name: Backend Tests
     runs-on: ubuntu-latest
     
     services:

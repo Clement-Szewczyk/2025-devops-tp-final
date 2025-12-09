@@ -2,20 +2,6 @@ name: CI - Docker
 
 on:
   workflow_call:
-  push:
-    branches: [main, develop]
-    paths:
-      - 'backend/Dockerfile'
-      - 'frontend/Dockerfile'
-      - 'docker-compose.yml'
-      - '.github/workflows/ci-docker.yaml'
-  pull_request:
-    branches: [main, develop]
-    paths:
-      - 'backend/Dockerfile'
-      - 'frontend/Dockerfile'
-      - 'docker-compose.yml'
-      - '.github/workflows/ci-docker.yaml'
 
 jobs:
   docker-push:
