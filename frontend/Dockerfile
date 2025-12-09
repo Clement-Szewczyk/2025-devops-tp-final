@@ -10,10 +10,9 @@ RUN npm run build
 
 FROM nginx:alpine 
 
-# Copier les fichiers buildés
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Copier le template dans le dossier templates (Nginx appliquera envsubst automatiquement)
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
 # Valeur par défaut pour le développement local
@@ -22,6 +21,5 @@ ENV BACKEND_URL=http://localhost:3000
 EXPOSE 5173
 
 # CMD ["nginx", "-g", "daemon off;"]
-# Script pour remplacer les variables d'environnement
 
 CMD ["/bin/sh", "-c", "envsubst '${BACKEND_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
