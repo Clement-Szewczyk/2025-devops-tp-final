@@ -41,6 +41,8 @@ services:
     container_name: christmas-frontend
     depends_on:
       - backend
+    environment:
+      - BACKEND_URL=http://backend:8080
     ports:
       - "5173:5173"
     restart: unless-stopped
