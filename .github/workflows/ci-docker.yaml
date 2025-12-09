@@ -1,4 +1,4 @@
-name: CI - Docker Tests
+name: CI - Docker
 
 on:
   push:
@@ -51,6 +51,8 @@ jobs:
           file: ./frontend/Dockerfile
           push: true
           tags: ${{secrets.DOCKER_IMAGE_FRONT}}:main
+          build-args: |
+            BACKEND_URL=${{ secrets.BACKEND_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
