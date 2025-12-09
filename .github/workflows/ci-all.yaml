@@ -19,3 +19,4 @@ jobs:
   docker:
     needs: [backend, frontend]
     uses: ./.github/workflows/ci-docker.yaml
+    secrets: inherit
