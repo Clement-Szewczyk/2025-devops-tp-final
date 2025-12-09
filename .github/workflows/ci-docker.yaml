@@ -17,7 +17,7 @@ on:
       - '.github/workflows/ci-docker.yaml'
 
 jobs:
-  docker-build:
+  docker-push:
     name: Docker push
     runs-on: ubuntu-latest
 
@@ -41,6 +41,16 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: ${{secrets.DOCKER_IMAGE_BACK}}:main
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_IMAGE_FRONT}}:main
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
