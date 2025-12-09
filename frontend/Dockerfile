@@ -21,4 +21,7 @@ ENV BACKEND_URL=http://localhost:3000
 
 EXPOSE 5173
 
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
+# Script pour remplacer les variables d'environnement
+
+CMD ["/bin/sh", "-c", "envsubst '${BACKEND_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
