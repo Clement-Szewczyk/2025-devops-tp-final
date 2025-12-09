@@ -14,7 +14,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o server ./cmd/server/main.go
 
 # Stage 2: Runtime
-FROM scratch
+FROM golang:1.24-alpine
 
 WORKDIR /app
 
