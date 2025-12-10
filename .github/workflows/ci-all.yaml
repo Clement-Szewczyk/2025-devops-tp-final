@@ -16,12 +16,18 @@ jobs:
     name: Run Frontend CI
     uses: ./.github/workflows/ci-frontend.yaml
 
+  storybook:
+    name: Run Storybook CI
+    uses: ./.github/workflows/ci-storybook.yaml
+
   docker:
+    if: github.ref == 'refs/heads/main'
     needs: [backend, frontend]
     uses: ./.github/workflows/ci-docker.yaml
     secrets: inherit
   
   cd:
+    if: github.ref == 'refs/heads/main'
     needs: [docker]
     uses: ./.github/workflows/cd.yaml
     secrets: inherit
