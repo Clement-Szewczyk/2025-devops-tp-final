@@ -16,12 +16,8 @@ jobs:
     name: Run Frontend CI
     uses: ./.github/workflows/ci-frontend.yaml
 
-  storybook:
-    name: Run Storybook CI
-    uses: ./.github/workflows/ci-storybook.yaml
-
   docker:
-    needs: [backend, frontend, storybook]
+    needs: [backend, frontend]
     uses: ./.github/workflows/ci-docker.yaml
     secrets: inherit
   
