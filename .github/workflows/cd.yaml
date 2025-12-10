@@ -1,0 +1,29 @@
+name: CD
+
+on:
+  workflow_call:
+
+jobs:
+  CD:
+    name: CD
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy Backend to Render
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            ${{ secrets.RENDER_BACKEND_SERVICE_ID }}
+      
+      - name: Deploy Frontend to Render
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            ${{ secrets.RENDER_FRONTEND_SERVICE_ID }}
+
+            
