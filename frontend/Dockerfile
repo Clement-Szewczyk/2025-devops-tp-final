@@ -12,9 +12,8 @@ FROM nginx:alpine
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-ENV BACKEND_URL=http://localhost:8080 
+ENV BACKEND_URL=http://localhost:8080
 
-# Render utilise un port dynamique => inutile d'exposer 5173
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["/bin/sh", "-c", "envsubst '${BACKEND_URL}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
