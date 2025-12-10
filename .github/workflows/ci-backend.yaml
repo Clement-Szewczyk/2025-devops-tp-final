@@ -1,37 +1,13 @@
 name: CI - Backend Tests
 
 on:
-  push:
-    branches: [main, develop]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/ci-backend.yaml'
-  pull_request:
-    branches: [main, develop]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/ci-backend.yaml'
+  workflow_call:
 
 jobs:
   backend-tests:
-    name: Backend Tests & Linting
+    name: Backend Tests
     runs-on: ubuntu-latest
     
-    services:
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: christmas_gifts
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

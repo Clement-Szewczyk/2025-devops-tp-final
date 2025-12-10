@@ -1,0 +1,72 @@
+name: CI - Storybook
+
+on:
+  workflow_call:
+
+jobs:
+  storybook-build:
+    name: Build Storybook
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build Storybook
+        working-directory: ./frontend
+        run: npm run build-storybook -- --output-dir=build
+
+      - name: Upload Storybook build
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-build
+          path: frontend/build
+          retention-days: 7
+
+
+  deploy-storybook:
+    name: Deploy Storybook to GitHub Pages
+    needs: storybook-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Download Storybook build
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-build
+          path: storybookFront
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          enablement: true
+
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

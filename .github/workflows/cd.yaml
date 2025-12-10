@@ -1,0 +1,23 @@
+name: CD
+
+on:
+  workflow_call:
+
+jobs:
+  CD:
+    name: CD
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy Backend to Render
+        run: |
+          curl -X POST ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
+      
+      - name: Deploy Frontend to Render
+        run: |
+          curl -X POST ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
+
+            

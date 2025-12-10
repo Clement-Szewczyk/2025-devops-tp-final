@@ -1,0 +1,33 @@
+name: CI - Complete Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:  # Permet de lancer manuellement
+
+jobs:
+  backend:
+    name: Run Backend CI
+    uses: ./.github/workflows/ci-backend.yaml
+
+  frontend:
+    name: Run Frontend CI
+    uses: ./.github/workflows/ci-frontend.yaml
+
+  storybook:
+    name: Run Storybook CI
+    uses: ./.github/workflows/ci-storybook.yaml
+
+  docker:
+    if: github.ref == 'refs/heads/main'
+    needs: [backend, frontend]
+    uses: ./.github/workflows/ci-docker.yaml
+    secrets: inherit
+  
+  cd:
+    if: github.ref == 'refs/heads/main'
+    needs: [docker]
+    uses: ./.github/workflows/cd.yaml
+    secrets: inherit
