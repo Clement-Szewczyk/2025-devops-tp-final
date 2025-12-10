@@ -52,4 +52,4 @@ jobs:
 
       - name: Run tests
         working-directory: ./frontend
-        run: npm run test -- --run
+        run: npm run test -- --run --project default
