@@ -14,16 +14,10 @@ jobs:
 
       - name: Deploy Backend to Render
         run: |
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            ${{ secrets.RENDER_BACKEND_SERVICE_ID }}
+          curl -X POST ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
       
       - name: Deploy Frontend to Render
         run: |
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            ${{ secrets.RENDER_FRONTEND_SERVICE_ID }}
+          curl -X POST ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
 
             
