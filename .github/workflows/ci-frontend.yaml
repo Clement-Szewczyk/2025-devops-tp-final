@@ -52,4 +52,4 @@ jobs:
 
       - name: Run tests
         working-directory: ./frontend
-        run: npx vitest run --exclude '**/*.stories.{ts,tsx}' --no-coverage --project default
+        run: npm run test
