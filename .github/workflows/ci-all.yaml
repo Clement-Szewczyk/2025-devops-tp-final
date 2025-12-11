@@ -33,9 +33,3 @@ jobs:
     needs: [docker]
     uses: ./.github/workflows/cd.yaml
     secrets: inherit
-
-  release:
-    if: github.ref == 'refs/heads/main'
-    needs: [docker, storybook]
-    uses: ./.github/workflows/release.yaml
-    secrets: inherit
