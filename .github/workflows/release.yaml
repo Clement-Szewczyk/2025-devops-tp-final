@@ -1,0 +1,50 @@
+name: Automatic Release
+
+on:
+  workflow_call:   
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from git tag or branch
+        id: version
+        run: |
+          # Essayer d'obtenir le tag le plus récent pointant sur HEAD
+          VERSION=$(git describe --exact-match --tags HEAD 2>/dev/null || echo "")
+          
+          # Si pas de tag, essayer d'extraire depuis le nom de la branche
+          if [ -z "$VERSION" ]; then
+            BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+            if [[ $BRANCH_NAME =~ (V[0-9]+(\.[0-9]+)*) ]]; then
+              VERSION="${BASH_REMATCH[1]}"
+            fi
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Version détectée: $VERSION"
+
+      - name: Check if version exists
+        id: check
+        run: |
+          if [ -n "${{ steps.version.outputs.version }}" ] && [[ "${{ steps.version.outputs.version }}" =~ ^V[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "is_release=true" >> $GITHUB_OUTPUT
+            echo "✅ Version valide détectée"
+          else
+            echo "is_release=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Aucune version valide détectée"
+          fi
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.is_release == 'true'
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
