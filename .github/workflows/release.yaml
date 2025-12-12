@@ -14,6 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Release Please
+        id: release
+        uses: googleapis/release-please-action@v4
         with:
           release-type: simple
+          package-name: christmas-gifts-app
+
+      - name: Show release outputs
+        if: steps.release.outputs.release_created
+        run: |
+          echo "Release created: ${{ steps.release.outputs.release_created }}"
+          echo "Tag name: ${{ steps.release.outputs.tag_name }}"
+          echo "Version: ${{ steps.release.outputs.version }}"
