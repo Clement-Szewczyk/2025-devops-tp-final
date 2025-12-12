@@ -16,15 +16,19 @@ jobs:
     name: Run Frontend CI
     uses: ./.github/workflows/ci-frontend.yaml
 
+  e2e:
+    needs: [backend, frontend]
+    name: Run E2E Tests
+    uses: ./.github/workflows/ci-e2e.yaml
 
   docker:
     if: github.ref == 'refs/heads/main'
-    needs: [backend, frontend]
+    needs: [e2e]
     uses: ./.github/workflows/ci-docker.yaml
     secrets: inherit
    
   storybook:
-    needs: [frontend, docker]
+    needs: [e2e, docker]
     name: Run Storybook CI
     uses: ./.github/workflows/ci-storybook.yaml
 
