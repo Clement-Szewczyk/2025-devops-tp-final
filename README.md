@@ -1,3 +1,12 @@
+[![CI/CD Pipeline](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/ci-cd.yml)
+[![Frontend CI](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/frontend-ci.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/frontend-ci.yml)
+[![Backend CI](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/backend-ci.yml)
+[![E2E Tests](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/e2e.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/e2e.yml)
+[![Release](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/release.yml/badge.svg)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/release.yml)
+[![Latest Release](https://img.shields.io/github/v/release/Clement-Szewczyk/2025-devops-tp-final)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/releases/latest)
+[![Docker Frontend](https://img.shields.io/docker/v/clementszewczyk/christmas-frontend?label=frontend)](https://hub.docker.com/r/clementszewczyk/christmas-frontend)
+[![Docker Backend](https://img.shields.io/docker/v/clementszewczyk/christmas-backend?label=backend)](https://hub.docker.com/r/clementszewczyk/christmas-backend)
+
 # Christmas Gift List
 
 A full-stack web application for managing Christmas gift ideas with a festive theme. Keep track of people and their gift ideas, and select the perfect gift for everyone on your list!
@@ -11,6 +20,17 @@ This project is a demonstration of a modern full-stack application with:
 - Component development environment with Storybook
 - Unit testing with Vitest (frontend) and Go's testing framework (backend)
 - End-to-end testing with Playwright
+
+## Deployment
+
+- [Frontend Deployment](https://christmas-frontend.onrender.com)
+- [Backend Deployment](https://christmas-backend-nme8.onrender.com)
+- [Storybook Deployment](https://clement-szewczyk.github.io/2025-devops-tp-final/storybookFront/?path=/docs/components-giftcard--docs)
+
+## Docker Images
+
+- Frontend: `clementszewczyk/christmas-frontend`
+- Backend: `clementszewczyk/christmas-backend`
 
 ## Project Structure
 
@@ -29,7 +49,14 @@ This project is a demonstration of a modern full-stack application with:
 - **[e2e](./e2e/README.md)**: End-to-end test suite using Playwright for user flow validation
 
 Each package has its own detailed README with setup instructions, available commands, and best practices.
-
+- Automated CI/CD pipelines
+- Documentation (with storybook), frontend, backend, database deployed (any provider, you can use a single one or multiple)
+- Dockerfile for frontend and backend and deployed images on Docker Hub
+- docker-compose file to run the full application (frontend, backend, database)
+- Source code on GitHub
+- Automatic creation of GitHub release for the project
+- documentation on what you did in the `docs/` directory of the project
+  - if you chose another platform than the ones we saw in class, document why and add clear steps on how you deploed on those platforms
 ## Getting Started
 
 ### Prerequisites
@@ -254,7 +281,14 @@ The frontend uses Vite's proxy configuration to forward `/api` requests to the b
 
 ## Additional Documentation
 
-- [Frontend README](./frontend/README.md) - Detailed frontend setup, API proxy configuration, and deployment guide
+- [Frontend README](./frontend/README.md) - Detailed frontend setup, API proxy configuration, and deployment gui- Automated CI/CD pipelines
+- Documentation (with storybook), frontend, backend, database deployed (any provider, you can use a single one or multiple)
+- Dockerfile for frontend and backend and deployed images on Docker Hub
+- docker-compose file to run the full application (frontend, backend, database)
+- Source code on GitHub
+- Automatic creation of GitHub release for the project
+- documentation on what you did in the `docs/` directory of the project
+  - if you chose another platform than the ones we saw in class, document why and add clear steps on how you deploed on those platformsde
 - [Backend README](./backend/README.md) - Backend setup, API development, and database management
 - [E2E Testing README](./e2e/README.md) - End-to-end testing guide with Playwright
 - [API Documentation](./docs/api.md) - API endpoints and request/response formats
