@@ -1,8 +1,3 @@
-[![CI/CD Pipeline](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/ci-cd.yml)
-[![Frontend CI](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/frontend-ci.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/frontend-ci.yml)
-[![Backend CI](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/backend-ci.yml)
-[![E2E Tests](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/e2e.yml/badge.svg?branch=main)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/e2e.yml)
-[![Release](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/release.yml/badge.svg)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/actions/workflows/release.yml)
 [![Latest Release](https://img.shields.io/github/v/release/Clement-Szewczyk/2025-devops-tp-final)](https://github.com/Clement-Szewczyk/2025-devops-tp-final/releases/latest)
 [![Docker Frontend](https://img.shields.io/docker/v/clementszewczyk/christmas-frontend?label=frontend)](https://hub.docker.com/r/clementszewczyk/christmas-frontend)
 [![Docker Backend](https://img.shields.io/docker/v/clementszewczyk/christmas-backend?label=backend)](https://hub.docker.com/r/clementszewczyk/christmas-backend)
